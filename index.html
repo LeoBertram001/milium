@@ -1,10 +1,173 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Milium Fidelidade</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+      color: #333;
+    }
+
+    header {
+      background-color: #e30613;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+
+    nav a {
+      color: white;
+      margin-left: 1.5rem;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .hero {
+      background: linear-gradient(to right, #e30613, #ffd200);
+      color: white;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+    }
+
+    .container {
+      display: none;
+      padding: 2rem;
+      max-width: 1000px;
+      margin: 2rem auto;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .active {
+      display: block;
+    }
+
+    .container h3 {
+      margin-bottom: 1rem;
+      color: #e30613;
+    }
+
+    .pontos {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #ffd200;
+    }
+
+    input, button {
+      width: 100%;
+      padding: 0.8rem;
+      margin: 0.5rem 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      font-size: 1rem;
+    }
+
+    button {
+      background-color: #e30613;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #c00010;
+    }
+
+    .produto {
+      border: 1px solid #ddd;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background-color: #fffbe6;
+      position: relative;
+    }
+
+    .produto img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+    }
+
+    .produto-info {
+      flex: 1;
+    }
+
+    .produto-info strong {
+      font-size: 1.2rem;
+      color: #e30613;
+    }
+
+    .produto-info p {
+      margin: 0.2rem 0;
+    }
+
+    .badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #ffd200;
+      color: #333;
+      font-weight: bold;
+      padding: 0.3rem 0.6rem;
+      border-radius: 5px;
+      font-size: 0.8rem;
+    }
+
+    footer {
+      background-color: #e30613;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 3rem;
+    }
+
+    /* Tela de comemoração */
+    #celebracao {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(255, 255, 255, 0.95);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #e30613;
+      text-shadow: 1px 1px 5px #fff;
+      user-select: none;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -17,7 +180,7 @@
     </nav>
   </header>
 
-  <section class="hero" id="home">
+  <section class="hero active" id="home">
     <h2>Produtos em Destaque</h2>
     <p>Veja o quanto você pode acumular em pontos com suas compras!</p>
   </section>
@@ -32,57 +195,129 @@
     <h3>Catálogo de Produtos</h3>
 
     <div class="produto">
-      <div class="badge">+2 pontos</div>
-      <img src="https://cdn-icons-png.flaticon.com/512/1046/1046857.png" alt="Caneca Milium">
+      <div class="badge">+10 pontos</div>
+      <img src="metalatex/3D-METALATEX-FOSCO-NOVA-FORMULA-18L.png" alt="Tinta Metalatex" />
       <div class="produto-info">
-        <strong>Caneca Milium</strong>
-        <p>Preço: R$ 20,00</p>
-        <p>Para resgatar: 60 pontos</p>
-        <button onclick="ganharPontos(2)">Comprar</button>
+        <strong>Tinta Metalatex</strong>
+        <p>Preço: R$ 569,90</p>
+        <p>Para resgatar: 5.000 pontos</p>
+        <button onclick="confirmarCompra(10)">Registrar</button>
       </div>
     </div>
 
     <div class="produto">
-      <div class="badge">+8 pontos</div>
-      <img src="https://cdn-icons-png.flaticon.com/512/2503/2503621.png" alt="Kit Ferramentas">
+      <div class="badge">+5 pontos</div>
+      <img src="zagonel/prima1.png" alt="Torneira Zagonel" />
       <div class="produto-info">
-        <strong>Kit Ferramentas</strong>
-        <p>Preço: R$ 80,00</p>
-        <p>Para resgatar: 300 pontos</p>
-        <button onclick="ganharPontos(8)">Comprar</button>
+        <strong>Torneira eletrica Zagonel</strong>
+        <p>Preço: R$ 268,90</p>
+        <p>Para resgatar: 2.000 pontos</p>
+        <button onclick="confirmarCompra(5)">Registrar</button>
       </div>
     </div>
 
     <div class="produto">
-      <img src="https://cdn-icons-png.flaticon.com/512/709/709790.png" alt="Desconto de R$20">
+      <div class="badge">+3 pontos</div>
+      <img src="hydra/hydra.png" alt="Chuveiro Hydra" />
       <div class="produto-info">
-        <strong>Desconto de R$20</strong>
-        <p>Preço: R$ 0,00 (benefício)</p>
-        <p>Para resgatar: 200 pontos</p>
+        <strong>Chuveiro Eletrônico Hydra Optima</strong>
+        <p>Preço: R$ 125,90 (benefício)</p>
+        <p>Para resgatar: 1.000 pontos</p>
+        <button onclick="confirmarCompra(3)">Registrar</button>
       </div>
     </div>
+  </div>
 
+  <div class="container" id="validarCompra">
+    <h3>Validação de Compra</h3>
+    <input type="text" id="codigoNota" placeholder="Código da Nota Fiscal" />
+    <input type="date" id="dataCompra" />
+    <input type="text" id="lojaCompra" placeholder="Loja da Compra" />
+    <button onclick="registrarCompra()">Registrar Compra</button>
   </div>
 
   <div class="container" id="login">
     <h3>Entrar</h3>
-    <input type="email" placeholder="Seu e-mail">
-    <input type="password" placeholder="Senha">
+    <input type="email" placeholder="Seu e-mail" />
+    <input type="password" placeholder="Senha" />
     <button>Entrar</button>
   </div>
 
   <div class="container" id="registro">
     <h3>Criar Conta</h3>
-    <input type="text" placeholder="Nome completo">
-    <input type="email" placeholder="E-mail">
-    <input type="password" placeholder="Senha">
+    <input type="text" placeholder="Nome completo" />
+    <input type="email" placeholder="E-mail" />
+    <input type="password" placeholder="Senha" />
     <button>Registrar</button>
+  </div>
+
+  <div id="celebracao" aria-live="polite" role="alert">
+    🎉 Parabéns! Você ganhou seus pontos! 🎉
   </div>
 
   <footer>
     &copy; 2025 Milium. Todos os direitos reservados.
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    let pontos = 120;
+    let pontosPendentes = 0;
+
+    function mostrar(id) {
+      const seções = ['home', 'pontuacao', 'produtos', 'login', 'registro', 'validarCompra'];
+      seções.forEach(sec => {
+        const el = document.getElementById(sec);
+        if(el) el.classList.remove('active');
+      });
+
+      if(id === 'home') {
+        document.getElementById('home').classList.add('active');
+        document.getElementById('pontuacao').classList.add('active');
+      } else {
+        document.getElementById(id).classList.add('active');
+      }
+
+      // Esconde comemoração caso esteja aberta
+      document.getElementById('celebracao').style.display = 'none';
+    }
+
+    function confirmarCompra(pontosGanhos) {
+      pontosPendentes = pontosGanhos;
+      mostrar('validarCompra');
+    }
+
+    function registrarCompra() {
+      const nota = document.getElementById('codigoNota').value.trim();
+      const data = document.getElementById('dataCompra').value.trim();
+      const loja = document.getElementById('lojaCompra').value.trim();
+
+      if (nota && data && loja) {
+        pontos += pontosPendentes;
+        pontosPendentes = 0;
+
+        document.getElementById('pontosUsuario').innerText = pontos;
+
+        // Mostrar a tela de comemoração
+        const cele = document.getElementById('celebracao');
+        cele.style.display = 'flex';
+
+        // Após 3 segundos, esconder comemoração e voltar para pontuação
+        setTimeout(() => {
+          cele.style.display = 'none';
+          mostrar('pontuacao');
+
+          // Limpar campos
+          document.getElementById('codigoNota').value = '';
+          document.getElementById('dataCompra').value = '';
+          document.getElementById('lojaCompra').value = '';
+        }, 3000);
+      } else {
+        alert('Por favor, preencha todas as informações para validar sua compra.');
+      }
+    }
+
+    // Mostrar home e pontuação ao carregar a página
+    mostrar('home');
+  </script>
 </body>
 </html>
