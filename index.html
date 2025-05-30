@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Milium Fidelidade</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Milium Fidelidade</h1>
+    <nav>
+      <a onclick="mostrar('home')">Home</a>
+      <a onclick="mostrar('produtos')">Catálogo</a>
+      <a onclick="mostrar('login')">Entrar</a>
+      <a onclick="mostrar('registro')">Registrar</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <h2>Produtos em Destaque</h2>
+    <p>Veja o quanto você pode acumular em pontos com suas compras!</p>
+  </section>
+
+  <div class="container active" id="pontuacao">
+    <h3>Seus Pontos Atuais</h3>
+    <div class="pontos" id="pontosUsuario">120</div>
+    <p>Continue comprando e ganhe ainda mais recompensas!</p>
+  </div>
+
+  <div class="container" id="produtos">
+    <h3>Catálogo de Produtos</h3>
+
+    <div class="produto">
+      <div class="badge">+2 pontos</div>
+      <img src="https://cdn-icons-png.flaticon.com/512/1046/1046857.png" alt="Caneca Milium">
+      <div class="produto-info">
+        <strong>Caneca Milium</strong>
+        <p>Preço: R$ 20,00</p>
+        <p>Para resgatar: 60 pontos</p>
+        <button onclick="ganharPontos(2)">Comprar</button>
+      </div>
+    </div>
+
+    <div class="produto">
+      <div class="badge">+8 pontos</div>
+      <img src="https://cdn-icons-png.flaticon.com/512/2503/2503621.png" alt="Kit Ferramentas">
+      <div class="produto-info">
+        <strong>Kit Ferramentas</strong>
+        <p>Preço: R$ 80,00</p>
+        <p>Para resgatar: 300 pontos</p>
+        <button onclick="ganharPontos(8)">Comprar</button>
+      </div>
+    </div>
+
+    <div class="produto">
+      <img src="https://cdn-icons-png.flaticon.com/512/709/709790.png" alt="Desconto de R$20">
+      <div class="produto-info">
+        <strong>Desconto de R$20</strong>
+        <p>Preço: R$ 0,00 (benefício)</p>
+        <p>Para resgatar: 200 pontos</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="container" id="login">
+    <h3>Entrar</h3>
+    <input type="email" placeholder="Seu e-mail">
+    <input type="password" placeholder="Senha">
+    <button>Entrar</button>
+  </div>
+
+  <div class="container" id="registro">
+    <h3>Criar Conta</h3>
+    <input type="text" placeholder="Nome completo">
+    <input type="email" placeholder="E-mail">
+    <input type="password" placeholder="Senha">
+    <button>Registrar</button>
+  </div>
+
+  <footer>
+    &copy; 2025 Milium. Todos os direitos reservados.
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
